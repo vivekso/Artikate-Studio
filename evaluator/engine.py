@@ -1,47 +1,91 @@
-from .rules import RULES
-
-OPERATORS = {
-    "==": lambda a, b: a == b,
-    ">=": lambda a, b: a >= b,
-}
+RULES = [
+    {
+        "id": "RULE_1",
+        "field": "account_age_days",
+        "operator": ">=",
+        "value": 90,
+        "weight": 0.2,
+        "reason": "Account age above threshold"
+    },
+    {
+        "id": "RULE_2",
+        "field": "kyc_verified",
+        "operator": "==",
+        "value": True,
+        "weight": 0.3,
+        "reason": "KYC verified"
+    },
+    {
+        "id": "RULE_3",
+        "field": "country",
+        "operator": "in",
+        "value": ["IN", "US", "UK"],
+        "weight": 0.24,
+        "reason": "Low risk country"
+    },
+    {
+        "id": "RULE_4",
+        "field": "monthly_volume",
+        "operator": ">",
+        "value": 500000,
+        "weight": 0.0,
+        "hard_reject": True,
+        "reason": "Monthly volume too high"
+    }
+]
 
 class DecisionEngine:
+    THRESHOLD_APPROVE = 0.5
+
     def __init__(self, attributes):
         self.attributes = attributes
-        self.score = 0
-        self.reasons = []
-        self.triggered_rules = []
 
     def evaluate(self):
+        score = 0
+        reasons = []
+        rules_triggered = []
+
         for rule in RULES:
             if self._matches(rule):
-                self.triggered_rules.append(rule["id"])
-                self.reasons.append(rule["message"])
+                rules_triggered.append(rule["id"])
+                score += rule.get("weight", 0)
+                reasons.append(rule.get("reason", ""))
 
-                if rule.get("hard_reject"):
-                    return self._reject()
+                if rule.get("hard_reject", False):
+                    return {
+                        "decision": "REJECT",
+                        "score": score,
+                        "reasons": reasons,
+                        "rules_triggered": rules_triggered
+                    }
 
-                self.score += rule.get("weight", 0)
+        decision = "APPROVE" if score >= self.THRESHOLD_APPROVE else "REVIEW"
 
-        return self._finalize()
-
-    def _matches(self, rule):
-        value = self.attributes.get(rule["field"])
-        return OPERATORS[rule["operator"]](value, rule["value"])
-
-    def _reject(self):
-        return {
-            "decision": "REJECT",
-            "score": 0,
-            "reasons": self.reasons,
-            "rules_triggered": self.triggered_rules,
-        }
-
-    def _finalize(self):
-        decision = "APPROVE" if self.score >= 0.5 else "REVIEW"
         return {
             "decision": decision,
-            "score": round(self.score, 2),
-            "reasons": self.reasons,
-            "rules_triggered": self.triggered_rules,
+            "score": score,
+            "reasons": reasons,
+            "rules_triggered": rules_triggered
         }
+
+    def _matches(self, rule):
+        field = rule.get("field")
+        if not field:
+            return False
+        value = self.attributes.get(field)
+        op = rule.get("operator")
+        target = rule.get("value")
+
+        if op == "==":
+            return value == target
+        elif op == ">=":
+            return value >= target
+        elif op == "<=":
+            return value <= target
+        elif op == ">":
+            return value > target
+        elif op == "<":
+            return value < target
+        elif op == "in":
+            return value in target
+        return False

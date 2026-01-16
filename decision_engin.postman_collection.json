@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "9f2eb498-7494-47b4-a546-8c8ee757bb7f",
+		"name": "decision_engin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25822626",
+		"_collection_link": "https://bold-eclipse-791078.postman.co/workspace/vivke~0bdd8b43-d4b8-4902-b80c-b6dd58d04933/collection/25822626-9f2eb498-7494-47b4-a546-8c8ee757bb7f?action=share&source=collection_link&creator=25822626"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/evaluate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user_id\": \"user1\",\n  \"attributes\": {\n    \"age\": 35,\n    \"country\": \"IN\",\n    \"account_age_days\": 180,\n    \"monthly_volume\": 75000,\n    \"kyc_verified\": true\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/evaluate",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"evaluate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/evaluate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user1\",\n  \"attributes\": {\n    \"age\": 35,\n    \"country\": \"IN\",\n    \"account_age_days\": 180,\n    \"monthly_volume\": 75000,\n    \"kyc_verified\": true\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/evaluate",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"evaluate"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "http://127.0.0.1:8000/evaluate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user1\",\n  \"attributes\": {\n    \"age\": 35,\n    \"country\": \"IN\",\n    \"account_age_days\": 180,\n    \"monthly_volume\": 75000,\n    \"kyc_verified\": true\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/evaluate",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"evaluate"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "http://127.0.0.1:8000/evaluate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"user1\",\n  \"attributes\": {\n    \"age\": 35,\n    \"country\": \"IN\",\n    \"account_age_days\": 180,\n    \"monthly_volume\": 75000,\n    \"kyc_verified\": true\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/evaluate",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"evaluate"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}
